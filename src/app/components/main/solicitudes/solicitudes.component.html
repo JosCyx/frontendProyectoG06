@@ -1,0 +1,87 @@
+<app-header></app-header>
+<button class="btn btn-warning m-2" onclick="history.back()">volver</button>
+<div class="container">
+    
+    <div class="text-center mb-5">
+        <h1>Solicitudes</h1>
+    </div>
+
+
+    <div class="container-request text-center d-flex align-items-center flex-column">
+        <ul class="nav nav-pills nav-justified mb-3" id="ex1">
+            <li class="nav-item">
+            <a class="nav-link custom-active" [ngClass]="{'active': changeview === 'request'}" (click)="changeView('request')">Ingreso de solicitudes</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link custom-active" [ngClass]="{'active': changeview === 'list'}" (click)="changeView('list')">Solicitudes registradas</a>
+            </li>
+        </ul>
+        
+        <div class="form-solicitud mt-5" *ngIf="changeview === 'request'">
+            <h5 class="ms-3 mb-5">Ingrese los datos de su solicitud: </h5>
+            <form>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" >Nombre de la empresa: </span>
+                    <input type="text" [(ngModel)]="nombreEmpresa" class="form-control" name="empresa">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Descripción:</span>
+                    <textarea  class="form-control"  rows="5" name="descripcion" [(ngModel)]="descpricion"></textarea>
+                </div>
+                  
+                <div class="d-flex flex-column text-center col-4 mx-auto">
+                    <span class="text-success">{{ mensajeExito }}</span>
+                    <button type="button" class="btn btn-warning m-5 " (click)="registrarSolicitud()">Ingresar solicitud</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="form-listado mt-5" *ngIf="changeview === 'list'">
+
+            <h5 class="ms-3 mb-5">Sus solicitudes: </h5>
+
+            <div *ngIf="listSolicitud.length === 0" class="card p-2 text-danger text-center col-6 mx-auto no-request">
+                <h6>Aún no ha registrado ninguna solicitud</h6>
+            </div>
+
+            <div class=" d-flex " *ngIf="listSolicitud.length != 0">
+                <table class="table table-bordered table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">N°</th>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Empresa</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Seguimiento</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let solicitud of listSolicitud let i=index">
+                            <th>{{i+1}}</th>
+                            <td>{{ nombreCliente }}</td>
+                            <td>{{ solicitud.nombreEmpresa }}</td>
+                            <td>{{ solicitud.descripcion }}</td>
+                            <td>
+                                <ng-container *ngIf="solicitud.estado; else noCasos">
+                                  Agregado a Casos
+                                </ng-container>
+                                <ng-template #noCasos>
+                                  Aún no se ha agregado a Casos
+                                </ng-template>
+                              </td>
+                            <td><button class="btn btn-warning m-1" (click)="confirmarCaso(i)">Confirmar caso</button>
+                                <button class="btn btn-danger text-light m-1" (click)="eliminarSolicitud(i)">Borrar solicitud</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+    </div>
+
+</div>
+
+<app-footer [nombre]="autor"></app-footer>

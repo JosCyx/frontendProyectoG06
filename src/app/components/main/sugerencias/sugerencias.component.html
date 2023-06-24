@@ -1,0 +1,87 @@
+<app-header></app-header>
+<button class="btn btn-warning m-2" onclick="history.back()">volver</button>
+<div class="container">
+    <div class="text-center mb-5">
+        <h1>Sugerencias</h1>
+    </div>
+    <form (ngSubmit)="enviarSugerencia()">
+    
+        <div class="form-group">
+          <label for="categoria">Categoría a evaluar: <span class="text-secondary">(obligatorio)</span></label>
+          <select id="categoria" class="form-control" [(ngModel)]="categoria" (change)="checkCategoriaOtro()" name="categoria">
+            <option value="general">General</option>
+            <option value="usabilidad">Usabilidad de la página</option>
+            <option value="tRespuesta">Tiempo de respuesta de solicitud</option>
+            <option value="atencionAgentes">Calidad de la atención de nuestros agentes</option>
+            <option value="otro" >Otro...</option>
+          </select>
+          <div *ngIf="showOtherCat" class="form-group mt-3">
+            <label for="otraCategoria">Especifique la otra categoría que desea evaluar:</label>
+            <input type="text" class="form-control" id="otraCategoria" [(ngModel)]="otraCategoria">
+          </div>
+        </div>
+    
+        <div class="form-group mt-5">
+          <label>Calificación: <span class="text-secondary">(obligatorio)</span></label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="satisfaccion" value="1" [(ngModel)]="satisfaccion">
+            <label class="form-check-label"><i class="bi bi-star-fill text-warning"></i></label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="satisfaccion" value="2" [(ngModel)]="satisfaccion">
+            <label class="form-check-label"><i class="bi bi-star-fill text-warning"></i> 
+                                            <i class="bi bi-star-fill text-warning"></i></label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="satisfaccion" value="3" [(ngModel)]="satisfaccion">
+            <label class="form-check-label"><i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i></label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="satisfaccion" value="4" [(ngModel)]="satisfaccion">
+            <label class="form-check-label"><i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i></label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="satisfaccion" value="5" [(ngModel)]="satisfaccion">
+            <label class="form-check-label"><i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i></label>
+          </div>
+        </div>
+
+        <div class="form-group mt-5">
+            <label for="comentario">Déjanos tu comentario: <span class="text-secondary">(obligatorio)</span></label>
+            <textarea id="comentario" class="form-control" [(ngModel)]="comentario" name="comentario" required></textarea>
+          </div>
+      
+          <div class="form-group mt-5">
+            <label for="detalles">Detalles adicionales:</label>
+            <textarea id="detalles" class="form-control" [(ngModel)]="detalles" name="detalles"></textarea>
+          </div>
+    
+        <button type="submit" class="btn btn-primary mt-3" 
+        [disabled]="categoria === '' || satisfaccion == 0 || comentario === ''">Enviar Sugerencia</button>
+      </form>
+    
+      <!-- Mostrar historial de sugerencias -->
+      <div class="mt-5 mb-5">
+        <h3>Historial de Sugerencias</h3>
+        <p *ngIf="historialSugerencias.length === 0" class="text-danger text-center">Aun no hay sugerencias</p>
+        <ul>
+            <li *ngFor="let historial of historialSugerencias">
+            {{ nombreCliente }} - {{ historial.comentario }} - {{ sugerencia.fecha | date: 'dd/MM/yyyy HH:mm' }}
+            </li>
+        </ul>
+      </div>
+      
+    <div>
+
+    </div>
+</div>
+<app-footer [nombre]="autor"></app-footer>

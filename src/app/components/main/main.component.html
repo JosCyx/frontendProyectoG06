@@ -1,0 +1,76 @@
+<app-header></app-header>
+<h1 class="text-center mb-5 mt-5">Hola <strong>{{nombreCliente}}</strong>, bienvenid@ a ConnectLogistics</h1>
+
+
+<div class="carousel-container">
+  <div class="carousel slide " data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../../../assets/img/slide1.webp" class="d-block img-fluid w-100" alt="agente de atencion al cliente">
+        <div class="carousel-caption d-none d-md-block">
+            <p class="carousel-description">Atención personalizada a cualquier hora.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../../../assets/img/slide2.webp" class="d-block img-fluid w-100" alt="mujer haciendo gesto de victoria">
+        <div class="carousel-caption d-none d-md-block">
+            <p class="carousel-description">Tu satisfacción es nuestra prioridad, trabajamos para superar tus expectativas.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../../../assets/img/slide3.webp" class="d-block img-fluid w-100" alt="2 mujeres dandose la mano">
+        <div class="carousel-caption d-none d-md-block">
+            <p class="carousel-description">Transformando solicitudes en experiencias excepcionales, un cliente a la vez.</p>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</div>
+
+<div class="container">
+  <div class="section-features mt-5 mb-5 text-center">
+    <h2 class="text-center mb-5 title">Nuestros servicios</h2>
+<div class="row">
+  <div class="col-md-4">
+    <h3>Atención personalizada</h3>
+    <p>Ofrecemos atención personalizada a cada uno de nuestros clientes. Nos enfocamos en comprender sus necesidades y brindar soluciones adaptadas a sus requerimientos específicos. Nuestro equipo de expertos está disponible para asistirte en todo momento y garantizar una experiencia de atención al cliente excepcional.</p>
+  </div>
+  <div class="col-md-4">
+    <h3>Calidad garantizada</h3>
+    <p>Nuestra empresa se compromete a proporcionar servicios de la más alta calidad. Nos aseguramos de mantener altos estándares de calidad en todas nuestras operaciones y procesos. Contamos con un equipo de profesionales capacitados y tecnología de vanguardia para garantizar que cada servicio que ofrecemos cumpla con tus expectativas y supere tus requerimientos.</p>
+  </div>
+  <div class="col-md-4">
+    <h3>Experiencia excepcional</h3>
+    <p>Nos especializamos en transformar las solicitudes de nuestros clientes en experiencias excepcionales. Desde el primer contacto hasta la entrega del servicio, nos esforzamos por brindar una experiencia única y memorable. Nuestro enfoque centrado en el cliente nos permite adaptarnos a tus necesidades, superar tus expectativas y convertir cada interacción en una experiencia satisfactoria y gratificante.</p>
+  </div>
+</div>
+  </div>
+
+  <div class="section-testimonials mt-5 mb-5 text-center">
+    <h2 class="text-center mb-5 title">Lo que dicen nuestros clientes</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <blockquote>
+          <p>"Estoy muy impresionado con el nivel de atención y profesionalismo que recibí. ¡El equipo de ConnectLogistics superó mis expectativas en todos los sentidos!"</p>
+          <footer class="autor">- Juan Picapiedra</footer>
+        </blockquote>
+      </div>
+      <div class="col-md-4">
+        <blockquote>
+          <p>"No puedo agradecer lo suficiente a ConnectLogistics por su excelente servicio. Realmente se preocupan por sus clientes y se esfuerzan por brindar soluciones rápidas y efectivas."</p>
+          <footer class="autor">- Jan Uary</footer>
+        </blockquote>
+      </div>
+      <div class="col-md-4">
+        <blockquote>
+          <p>"¡Increíble experiencia de principio a fin! ConnectLogistics se encargó de todos los detalles y me brindó un servicio de calidad. Sin duda los recomendaría a todos mis conocidos."</p>
+          <footer class="autor">- David Goliat</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<app-footer [nombre]="autor"></app-footer>

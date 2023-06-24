@@ -1,0 +1,21 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap-icons/font/bootstrap-icons.min.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@font-face {
+    font-family: 'Product Sans';
+    src: url('assets/fonts/Product-Sans-Regular.ttf') format('truetype');
+    /* Otros atributos opcionales, como fontWeight, fontStyle, etc. */
+  }
+  
+
+html, body { height: 100%; }
+
+body { 
+    margin: 0; 
+    font-family: 'Product Sans'; 
+}
+
+
+
+  

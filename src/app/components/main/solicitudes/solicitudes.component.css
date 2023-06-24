@@ -1,0 +1,40 @@
+body{
+    overflow-y: scroll;
+}
+.form-solicitud{
+    width: 75%;
+}
+.form-listado{
+    width: 75%;
+    margin-bottom: 107px;
+}
+.container-request{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #ffc107;
+    color: #000000;
+    font-weight: bold;
+}
+
+.nav-item{
+    width: 250px;
+}
+  
+.nav-pills .nav-link {
+    color: #000000;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.container{
+    height: auto;
+}
+
+.no-request{
+    margin-bottom: 107px;
+}

@@ -1,0 +1,18 @@
+.carousel-container {
+    width: 45%; /* Ajusta el ancho según tus necesidades */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+  }
+
+.carousel-description{
+    background-color: rgba(0, 0, 0, 0.541);
+    border-radius: 5pt;
+}
+
+.title{
+  font-style: italic;
+  font-weight: bold;
+}
+
+.autor{
+  font-style: italic;
+}

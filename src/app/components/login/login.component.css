@@ -1,0 +1,89 @@
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+
+a:hover{
+    cursor: pointer;
+}
+
+.areg{
+  color: rgb(0, 0, 179);
+  text-decoration: underline;
+}
+.nav-pills .nav-link.active {
+  background-color: #ffc107;/*color warning de boostrap*/
+  color: #000000;
+  font-weight: bold;
+}
+
+/* Estilos para las pestañas no seleccionadas */
+.nav-pills .nav-link {
+  color: #000000;
+}
+
+/*Estilos para el boton de visualizar contraseña*/
+.password-container {
+  position: relative;
+}
+
+.password-toggle {
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-95%);
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.password-toggle:active{
+  background-color: #ffff;
+}
+
+.password-toggle:hover,
+.password-toggle:focus {
+  color: #000000;
+}
+
+.section-background {
+  background-image: url('../../../assets/img/background.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 0;
+  position: relative;
+  width: 100%;
+  height: 82vh; /* Ajusta la altura según tus necesidades */
+}
+
+.section-overlay {
+  background-color: rgba(0, 0, 0, 0.6); /* Cambia el valor alfa para ajustar la opacidad */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.section-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.forms{
+  background-color: rgba(255, 255, 255, 0.464);
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+}

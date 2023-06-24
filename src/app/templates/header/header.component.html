@@ -1,0 +1,17 @@
+<nav class="navbar bg-warning">
+  <div class="container-fluid">
+    <div class="d-flex align-items-center">
+      <img src="../../../assets/img/home.webp" alt="logotipo (personas haciendo un trato)" width="33" height="33" class="rounded-circle">
+      <a (click)="home()"><span class="text-dark ml-3 ms-3">ConnectLogistics</span></a>
+    </div>
+    <ul *ngIf="isLogin === true" class="nav nav-pills justify-content-start">
+      <li class="nav-item"><a class="nav-link me-2" routerLink="/main" routerLinkActive="active">Home</a></li>
+      <li class="nav-item"><a class="nav-link me-2" routerLink="/request" routerLinkActive="active">Solicitudes</a></li>
+      <li class="nav-item"><a class="nav-link me-2" routerLink="/cases" routerLinkActive="active">Casos</a></li>
+      <li class="nav-item"><a class="nav-link me-2" routerLink="/contact" routerLinkActive="active">Comunicación</a></li>
+      <li class="nav-item"><a class="nav-link me-2" routerLink="/suggest" routerLinkActive="active">Sugerencias</a></li>
+      <li *ngIf = "isAdmin" class="nav-item"><a class="nav-link me-2" routerLink="/admin" routerLinkActive="active">Administrador</a></li>
+      <li class="nav-item"><a class="nav-link me-2" id="logout" (click)="logOut()">Cerrar Sesión</a></li>
+    </ul>
+  </div>
+</nav>
