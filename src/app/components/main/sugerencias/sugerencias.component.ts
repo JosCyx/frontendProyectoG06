@@ -18,7 +18,7 @@ export class SugerenciasComponent {
   fecha: Date = new Date;
   
   
-  nombreCliente: string =this.authService.nombreCliente;;
+  nombreCliente: string = this.authService.nombreCliente;
   showOtherCat: boolean = false;
   sugerencia: Sugerencia = new Sugerencia();
   historialSugerencias: Sugerencia[] = [];

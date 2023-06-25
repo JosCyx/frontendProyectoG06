@@ -73,6 +73,7 @@
       <div class="mt-5 mb-5">
         <h3>Historial de Sugerencias</h3>
         <p *ngIf="historialSugerencias.length === 0" class="text-danger text-center">Aun no hay sugerencias</p>
+        
         <ul>
             <li *ngFor="let historial of historialSugerencias">
             {{ nombreCliente }} - {{ historial.comentario }} - {{ sugerencia.fecha | date: 'dd/MM/yyyy HH:mm' }}

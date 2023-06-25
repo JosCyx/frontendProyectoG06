@@ -19,9 +19,7 @@ export class SolicitudesComponent{
   mensajeExito: string = '';
   nombreCliente: string = this.authService.nombreCliente;
 
-  listSolicitud: Solicitud[] = [
-    {nombreEmpresa:'CocaCola', descripcion:'Solicito un pedido de 4 javas de colas de 1 1/4 L para la ciudad de guayaquil, a más tardar el dia jueves.', estado: false}
-  ];
+  listSolicitud: Solicitud []= this.authService.listSolicitud;
 
 
   constructor(private authService: AuthService) { }
@@ -38,10 +36,11 @@ export class SolicitudesComponent{
     const solicitud: Solicitud = {
       nombreEmpresa: this.nombreEmpresa,
       descripcion: this.descpricion,
-      estado: this.estado
+      estado: this.estado,
+      estado2: false
     }
 
-    this.listSolicitud.push(solicitud);
+    this.authService.listSolicitud.push(solicitud);
 
     this.nombreEmpresa="";
     this.descpricion="";
@@ -52,11 +51,11 @@ export class SolicitudesComponent{
   }
 
   confirmarCaso(indice: number): void{
-    this.listSolicitud[indice].estado = true; 
+    this.authService.listSolicitud[indice].estado = true; 
   }
 
   eliminarSolicitud(indice:number):void{
-    this.listSolicitud.splice(indice,1);
+    this.authService.listSolicitud.splice(indice,1);
 
   }
 }

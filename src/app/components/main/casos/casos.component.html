@@ -1,4 +1,87 @@
 <app-header></app-header>
 <button class="btn btn-warning m-2" onclick="history.back()">volver</button>
-<p>casos works!</p>
+<div class="container">
+    <div class="text-center mb-5">
+        <h1>Casos</h1>
+    </div>
+
+    <div class="container m-5 text-center d-flex justify-content-center flex-column">
+        <div *ngIf="listCasos.length === 0" class="card p-2 text-danger text-center col-6 mx-auto no-request">
+            <h6>No se encontraron Casos</h6>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-warning m-3 col-2" (click)="consultarCasos()">Consultar casos</button>
+
+        </div>
+        <div *ngIf="listCasos.length != 0">
+            <table class="table table-bordered table-striped text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Agente</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Prioridad</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let caso of listCasos let i=index">
+                        <th>{{i+1}}</th>
+                        <td>{{ nombreCliente }}</td>
+                        <td>{{ caso.nombreAgente }}</td>
+                        <td>{{ caso.descripcion }}</td>
+                        <td>{{ caso.prioridad }}</td>
+                        <td>{{ caso.fecha }}</td>
+                        <td>
+                            <ng-container *ngIf="caso.estado; else pendiente">
+                              En atencion
+                            </ng-container>
+                            <ng-template #pendiente>
+                              Pendiente de atencion
+                            </ng-template>
+                          </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container m-5">
+        <div class="text-center mb-5">
+            <h3>Agentes disponibles</h3>
+        </div>
+        <div class=" d-flex " *ngIf="listAgente.length != 0">
+            <table class="table table-bordered table-striped text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">Agente</th>
+                        <th scope="col">Correo electronico</th>
+                        <th scope="col">Empresa</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let agente of listAgente let i=index">
+                        <th>{{i+1}}</th>
+                        <td>{{ agente.nombre}}</td>
+                        <td>{{ agente.email }}</td>
+                        <td>{{ agente.empresa }}</td>
+                        <td>
+                            <ng-container *ngIf="agente.estado; else pendiente">
+                              Ocupado
+                            </ng-container>
+                            <ng-template #pendiente>
+                              Disponible
+                            </ng-template>
+                          </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
 <app-footer [nombre]="autor"></app-footer>
