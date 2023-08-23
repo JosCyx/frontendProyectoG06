@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Usuario } from 'src/app/models/Usuario';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { Observable } from 'rxjs';
+import { ComunicationAPIService } from 'src/app/services/comunicationapi.service';
 
 
 @Component({
@@ -39,7 +41,7 @@ export class LoginComponent {
     { nombre: 'Maria Pepa', user: 'maria123', email: 'maria@gmail.com', pass: 'maria123' }
   ];
   
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private comService: ComunicationAPIService) { }
 
   changeForm(form: string) {//permite el cambio entre formularios
     this.activeForm = form;
@@ -71,35 +73,30 @@ export class LoginComponent {
   }
 
   iniciarSesion(user: string, password: string){//verifica que las credenciales ingresadas existan en la base de datos y redirige a la siguiente vista
-    const usuarioEncontrado = this.listUser.find((usuario) => usuario.user === user && usuario.pass === password);
-
-    if (usuarioEncontrado) {
-      if(usuarioEncontrado.email === 'admin@admin.com'){
+    
+    this.comService.iniciarSesion(user, password).subscribe(
+      (response) => {
+        this.authService.nombreCliente = response.nombre;
         this.authService.isAdmin = true;
         this.authService.isLogin = true;
-      }
-      
-      this.authService.isLogin = true;//se define true como valor de la propiedad de nuestro servicio de autenticacion
-      this.authService.nombreCliente = usuarioEncontrado.nombre;
-      this.router.navigate(['main']);
-    } else {
-  
-      // Verificar si el usuario existe
-      const usuarioExistente = this.listUser.find((u) => u.user === user);
+        // Ejemplo: Redirige a la siguiente vista
+        this.router.navigate(['main']);
 
-      if (!usuarioExistente) {
-        this.mensaje('Usuario no encontrado');
-        return;
-      } else if (usuarioExistente.pass !== password) {
-        this.mensaje('Contraseña incorrecta o no existe');
-        return;
+        // Ejemplo: Muestra un mensaje de éxito
+        this.mensaje('Inicio de sesión exitoso');
+      },
+      (error) => {
+        // Error en el inicio de sesión
+        // Maneja el error según sea necesario
+        this.mensaje('Credenciales incorrectas');
       }
-    }
+    );
+    
 
   }
 
 
-  registrarUsuario():void{//añade un usuario a la lista y redirige inmediatamente al formulario login para iniciar sesion
+ /* registrarUsuario():void{//añade un usuario a la lista y redirige inmediatamente al formulario login para iniciar sesion
     if (this.pass !== this.confirmPass) {
       this.mensaje('Las contraseñas no coinciden.');
       return;
@@ -121,6 +118,43 @@ export class LoginComponent {
     this.confirmPass='';
 
     this.activeForm = 'login'//al definir activeForm=login se muestra el formulario de inicio de sesion
+  }*/
+
+  registrarUsuario(): void {
+    if (this.pass !== this.confirmPass) {
+      this.mensaje('Las contraseñas no coinciden.');
+      return;
+    }
+
+    this.comService.getUsersList().subscribe(
+      (usuarios) => {
+        // Encuentra el último ID disponible
+        const ultimoId = usuarios.length > 0 ? Math.max(...usuarios.map(u => u.id)) + 1 : 1;
+
+        const nuevoUsuario = {
+          id: ultimoId,
+          nombre: this.nombre,
+          nombreUsuario: this.user,
+          correoElectronico: this.email,
+          contraseña: this.pass,
+          rolId: 0 // Ajusta el ID del rol según tus necesidades
+        };
+
+        this.comService.addUsers(nuevoUsuario).subscribe(
+          () => {
+            this.mensaje('Usuario registrado exitosamente.');
+            // Redirige al formulario de inicio de sesión
+            this.router.navigate(['login']);
+          },
+          (error) => {
+            this.mensaje('Error al registrar el usuario.');
+          }
+        );
+      },
+      (error) => {
+        this.mensaje('Error al obtener la lista de usuarios.');
+      }
+    );
   }
 
   

@@ -61,10 +61,10 @@
                         <tr *ngFor="let solicitud of listSolicitud let i=index">
                             <th>{{i+1}}</th>
                             <td>{{ nombreCliente }}</td>
-                            <td>{{ solicitud.nombreEmpresa }}</td>
-                            <td>{{ solicitud.descripcion }}</td>
+                            <td>{{ solicitud.empresaId }}</td>
+                            <td>{{ solicitud.descripcionSolicitud }}</td>
                             <td>
-                                <ng-container *ngIf="solicitud.estado; else noCasos">
+                                <ng-container *ngIf="solicitud.estadoSolicitud; else noCasos">
                                   Agregado a Casos
                                 </ng-container>
                                 <ng-template #noCasos>
